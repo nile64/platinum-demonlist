@@ -17,6 +17,7 @@ ul {
 ol,
 ul {
     list-style: none;
+    font-family: Segoe UI;
 }
 
 table {
