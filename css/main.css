@@ -16,7 +16,7 @@ header.dark {
     --color-on-background: white;
     --color-background-hover: #27262c;
     --color-on-background-hover: white;
-    --color-primary: #c29600;
+    --color-primary: #424242;
     --color-primary-disabled: #806300;
     --color-on-primary: white;
     --color-error: #de0000;
@@ -50,7 +50,7 @@ header {
     display: flex;
     padding-inline: calc(25vw - 10rem);
     height: 4rem;
-    background-color: var(--color-primary);
+    background-color: #595959;
     color: var(--color-on-primary);
 }
 @media screen and (min-width: 1366px) {
