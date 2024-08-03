@@ -12,15 +12,12 @@
             property="og:url"
             content="https://platinum-demonlist.pages.dev"
         />
-        <!-- Replace with your page URL -->
         <meta property="og:type" content="website" />
         <meta
             property="og:description"
             content="Platinum GDPS Official Demonlist - a list of all the hardest rated extreme demon levels on Platinum GDPS"
         />
         <title>Platinum GDPS Demonlist</title>
-
-        <!-- Replace your server icon by uploading an image file named "list_icon.png"-->
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,7 +43,7 @@
             type="text/css"
             href="/css/components/tabs.css"
         />
-        <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.js"></script>
+        <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.prod.js"></script>
         <script src="https://unpkg.com/vue-router@4.0.14/dist/vue-router.global.prod.js"></script>
         <script type="module" src="/js/main.js"></script>
     </head>
@@ -66,9 +63,12 @@
                 <router-link class="nav__tab" to="/roulette">
                     <span class="type-label-lg">Roulette</span>
                 </router-link>
-                <!-- <router-link class="nav__tab" to="/submit">
-                    <span class="type-label-lg">Submit Level</span>
-                </router-link> -->
+                <router-link class="nav__tab" to="/submit">
+                    <span class="type-label-lg">Submit Level or Record</span>
+                </router-link>
+                <router-link class="nav__tab" to="/submissions">
+                    <span class="type-label-lg">Submissions</span>
+                </router-link>
                 <div class="nav__actions">
                     <button
                         class="nav__icon"
@@ -79,14 +79,9 @@
                             alt=""
                         />
                     </button>
-                    <!-- Replace the '#' with your discord server's invite-->
                     <a class="nav__icon" href="https://discord.gg/GxFAArch9V">
                         <img src="/assets/discord.svg" alt="Discord Logo" />
                     </a>
-                    <!-- List record submission form, add a link to replace the '#' when putting a link to your list submission form-->
-                    <a class="nav__cta type-label-lg" href="" target="_blank"
-                        >Submit Record</a
-                    >
                 </div>
             </nav>
         </header>

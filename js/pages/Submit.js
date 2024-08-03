@@ -1,103 +1,105 @@
 import { store } from "../main.js";
-import { embed } from "../util.js";
-import { fetchEditors } from "../content.js";
-
-import Spinner from "../components/Spinner.js";
 
 export default {
-    components: { Spinner },
-    template: `
-        <main v-if="loading">
-            <Spinner></Spinner>
-        </main>
-        <main v-else class="page-form">
-            <div class="form-container">
-                <h1>Submit a New Demon Level</h1>
-                <form @submit.prevent="submitLevel">
-                    <div class="form-group">
-                        <label for="levelName">Level Name</label>
-                        <input type="text" id="levelName" v-model="levelName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="author">Author</label>
-                        <input type="text" id="author" v-model="author" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="levelId">Level ID</label>
-                        <input type="number" id="levelId" v-model="levelId" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="verificationVideo">Verification Video Link</label>
-                        <input type="url" id="verificationVideo" v-model="verificationVideo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password (if any)</label>
-                        <input type="number" id="password" v-model="password">
-                    </div>
-                    <button type="submit" class="submit-button">Submit Level</button>
-                </form>
-                <div class="errors" v-if="errors.length > 0">
-                    <p class="error" v-for="error in errors">{{ error }}</p>
-                </div>
-                <div class="meta">
-                    <h3>Submission Requirements</h3>
-                    <ul>
-                        <li>Achieved the record without using hacks (FPS bypass allowed, up to 360fps).</li>
-                        <li>Achieved the record on the level listed on the site - check the level ID before submitting.</li>
-                        <li>Have either source audio or clicks/taps in the video. Edited audio only does not count.</li>
-                        <li>Recording must show a previous attempt and entire death animation before the completion unless on the first attempt.</li>
-                        <li>Recording must show the player hitting the endwall; otherwise, the completion is invalidated.</li>
-                        <li>No secret or bug routes allowed.</li>
-                        <li>No easy modes; only the unmodified level qualifies.</li>
-                        <li>Once a level falls onto the Legacy List, records are accepted for 24 hours after it falls off; after that, no records are accepted.</li>
-                    </ul>
-                </div>
-            </div>
-        </main>
-    `,
-    data: () => ({
-        loading: true,
-        levelName: '',
-        author: '',
-        levelId: '',
-        verificationVideo: '',
-        password: '',
-        errors: [],
-        store
-    }),
-    async mounted() {
-        this.editors = await fetchEditors();
-        if (!this.editors) {
-            this.errors.push("Failed to load list editors.");
-        }
-        this.loading = false;
-    },
-    methods: {
-        async submitLevel() {
-            const formData = new FormData();
-            formData.append('levelName', this.levelName);
-            formData.append('author', this.author);
-            formData.append('levelId', this.levelId);
-            formData.append('verificationVideo', this.verificationVideo);
-            formData.append('password', this.password);
+  template: `
+    <main class="submit-record">
+      <h1>Submit Level or Record</h1>
+      <form @submit.prevent="submitSubmission">
+        <label for="type">Submission Type:</label>
+        <select v-model="type" id="type" required>
+          <option value="record">Record</option>
+          <option value="level">Level</option>
+        </select>
 
-            try {
-                const response = await fetch('https://pnmgd.alwaysdata.net/submitDemonlistLevel.php', {
-                    method: 'POST',
-                    body: formData
-                });
+        <input type="text" v-model="levelName" placeholder="Level Name" required />
+        <input type="text" v-model="playerName" placeholder="Player Name" required />
+        <input v-if="type === 'level'" type="number" v-model.number="id" placeholder="Level ID" required />
+        <input v-if="type === 'level'" type="text" v-model="name" placeholder="Level Name" required />
+        <textarea v-if="type === 'level'" v-model="creators" placeholder="Creators (comma-separated)" required></textarea>
+        <input v-if="type === 'level'" type="text" v-model="verifier" placeholder="Verifier" required />
+        <input v-if="type === 'level'" type="url" v-model="verification" placeholder="Verification Video URL" required />
+        <input type="number" v-model.number="percentage" placeholder="Percentage" required />
+        <input v-if="type === 'record'" type="number" v-model.number="hz" placeholder="Hz" required />
+        <input type="url" v-model="video" placeholder="YouTube Video URL" required />
 
-                if (!response.ok) {
-                    throw new Error(`Failed to submit level, status code: ${response.status}`);
-                }
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+  `,
+  data: () => ({
+    type: "record", // Default to 'record'
+    playerName: "",
+    levelName: "",
+    id: null, // Only used for level submissions
+    name: "", // Only used for level submissions
+    creators: "", // Only used for level submissions, comma-separated
+    verifier: "", // Only used for level submissions
+    verification: "", // Only used for level submissions
+    percentage: "",
+    video: "",
+    hz: NaN,
+    store,
+  }),
+  methods: {
+    async submitSubmission() {
+      if (!this.validateYouTubeURL(this.video)) {
+        alert("Please enter a valid YouTube URL.");
+        return;
+      }
 
-                const result = await response.text();
-                alert(result); // Display the response from PHP script (e.g., success message)
+      if (this.type === "record" && (isNaN(this.hz) || this.hz <= 0)) {
+        alert("Please enter a valid Hz value.");
+        return;
+      }
 
-            } catch (error) {
-                this.errors.push("Failed to submit the level. Please try again later.");
-                console.error('Error submitting level:', error);
-            }
+      // Convert creators to an array
+      const creatorsArray = this.creators
+        .split(",")
+        .map((creator) => creator.trim());
+
+      const response = await fetch(
+        "https://platinum.141412.xyz/uploadSubmission.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type: this.type,
+            playerName: this.playerName,
+            levelName: this.levelName,
+            id: this.id,
+            name: this.name,
+            creators: creatorsArray,
+            verifier: this.verifier,
+            verification: this.verification,
+            percentage: this.percentage,
+            video: this.video,
+            hz: this.hz,
+          }),
         },
+      );
+
+      const result = await response.json();
+
+      if (response.ok) {
+        this.playerName = "";
+        (this.levelName = ""), (this.id = null);
+        this.name = "";
+        this.creators = "";
+        this.verifier = "";
+        this.verification = "";
+        this.percentage = "";
+        this.video = "";
+        this.hz = NaN;
+        alert(result.message || "Submission successful!");
+      } else {
+        alert(result.error || "Failed to submit");
+      }
     },
+    validateYouTubeURL(url) {
+      const pattern = /^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+      return pattern.test(url);
+    },
+  },
 };

@@ -127,7 +127,7 @@ dt,
 .type-h6,
 .type-title-sm {
     font-family: "Lexend Deca", sans-serif;
-    font-size: 17.1428571429px;
+    font-size: 16.9px;
     line-height: 24px;
     font-weight: 700;
     text-transform: uppercase;
@@ -152,6 +152,7 @@ dt::after,
 
 label,
 input[type="text"],
+input[type="url"],
 input[type="number"],
 .type-label-lg {
     font-family: "Lexend Deca", sans-serif;
@@ -210,7 +211,7 @@ input[type="number"],
 p,
 .type-body {
     font-family: "Lexend Deca", sans-serif;
-    font-size: 17.1428571429px;
+    font-size: 16.9px;
     line-height: 28px;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
