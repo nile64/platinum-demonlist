@@ -42,7 +42,12 @@ export default {
   }),
   methods: {
     async submitSubmission() {
-      if (!this.validateYouTubeURL(this.video)) {
+      if (this.type === "record" && !this.validateYouTubeURL(this.video)) {
+        alert("Please enter a valid YouTube URL.");
+        return;
+      }
+
+      if (this.type === "level" && !this.validateYouTubeURL(this.verification)) {
         alert("Please enter a valid YouTube URL.");
         return;
       }
