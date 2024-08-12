@@ -11,16 +11,16 @@ export default {
           <option value="level">Level</option>
         </select>
 
-        <input type="text" v-model="levelName" placeholder="Level Name" required />
-        <input type="text" v-model="playerName" placeholder="Player Name" required />
+        <input v-if="type === 'record'" type="text" v-model="levelName" placeholder="Level Name" required />
+        <input v-if="type === 'record'" type="text" v-model="playerName" placeholder="Player Name" required />
         <input v-if="type === 'level'" type="number" v-model.number="id" placeholder="Level ID" required />
         <input v-if="type === 'level'" type="text" v-model="name" placeholder="Level Name" required />
         <textarea v-if="type === 'level'" v-model="creators" placeholder="Creators (comma-separated)" required></textarea>
         <input v-if="type === 'level'" type="text" v-model="verifier" placeholder="Verifier" required />
         <input v-if="type === 'level'" type="url" v-model="verification" placeholder="Verification Video URL" required />
-        <input type="number" v-model.number="percentage" placeholder="Percentage" required />
+        <input v-if="type === 'record'" type="number" v-model.number="percentage" placeholder="Percentage" required />
         <input v-if="type === 'record'" type="number" v-model.number="hz" placeholder="Hz" required />
-        <input type="url" v-model="video" placeholder="YouTube Video URL" required />
+        <input v-if="type === 'record'" type="url" v-model="video" placeholder="YouTube Video URL" required />
 
         <button type="submit">Submit</button>
       </form>
