@@ -66,7 +66,6 @@ export default {
   computed: {
     sortedSubmissions() {
       let ret = this.submissions
-        .filter((submission) => submission.state !== 1)
         .slice()
         .sort((a, b) => a.state - b.state);
       return ret;
