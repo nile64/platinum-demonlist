@@ -132,7 +132,7 @@ export default {
           "https://platinum.141412.xyz/getSubmissions.php",
         );
         const data = await response.json();
-        if (!data.message === "No submissions found.") {
+        if (!data.message === "No submissions found." || data.message == undefined) {
           this.submissions = data.submissions;
         } else {
           this.submissions = [];
