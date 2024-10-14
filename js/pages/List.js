@@ -163,6 +163,9 @@ export default {
     },
   },
   async mounted() {
+    this.ListRefresh();
+  },
+  async ListRefresh() {
     // Hide loading spinner
     if(this.listType === "demonlist"){
         this.list = await fetchList();
@@ -196,5 +199,6 @@ export default {
   methods: {
     embed,
     score,
+    ListRefresh,
   },
 };
