@@ -158,6 +158,6 @@ export async function fetchLeaderboard() {
   return [res.sort((a, b) => b.total - a.total), errs];
 }
 
-export async function refreshLists(){
+export function refreshLists(){
   console.log("refreshing")
 }
