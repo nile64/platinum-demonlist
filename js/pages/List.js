@@ -199,5 +199,6 @@ export default{
   methods: {
     embed,
     score,
+    ReloadList,
   },
 };
