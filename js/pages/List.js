@@ -23,7 +23,7 @@ export default{
         </main>
         <main v-else class="page-list">
             <div class="list-container">
-                <select onchange="listType = id" name="listselectiondropdown" id="listselectiondropdown">
+                <select onchange="console.log(value)" name="listselectiondropdown" id="listselectiondropdown">
                     <option value="demonlist" selected="selected">Demonlist</option>
                     <option value="challengelist">Challenge List</option>
                 </select>
@@ -193,11 +193,5 @@ export default{
   methods: {
     embed,
     score,
-    ReloadList : function(){
-        var listselectiondropdown = document.getElementById("listselectiondropdown");
-        var value = listselectiondropdown.value;
-
-        this.listType = value;
-    },
   },
 };
