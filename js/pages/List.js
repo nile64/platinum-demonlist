@@ -2,6 +2,7 @@ import { store } from "../main.js";
 import { embed } from "../util.js";
 import { score } from "../score.js";
 import { fetchEditors, fetchList } from "../content.js";
+import { fetchChallengeList } from "../challenge_content.js";
 
 import Spinner from "../components/Spinner.js";
 import LevelAuthors from "../components/List/LevelAuthors.js";
@@ -22,6 +23,10 @@ export default {
         </main>
         <main v-else class="page-list">
             <div class="list-container">
+                <select name="listselectiondropdown" id="listselectiondropdown">
+                    <option value="demonlist">Demonlist</option>
+                    <option value="challengelist">Challenge List</option>
+                </select>
                 <table class="list" v-if="list">
                     <tr v-for="([level, err], i) in list">
                         <td class="rank">
@@ -152,7 +157,14 @@ export default {
   },
   async mounted() {
     // Hide loading spinner
-    this.list = await fetchList();
+    var listDropdown = document.getElementById("listselectiondropdown");
+    if(listDropdown.value == "demonlist"){
+        this.list = await fetchList();
+    }
+    else if(listDropdown.value == "challengelist"){
+        this.list = await fetchChallengeList();
+    }
+    
     this.editors = await fetchEditors();
 
     // Error handling
