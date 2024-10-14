@@ -22,15 +22,10 @@ export default {
         </main>
         <main v-else class="page-list">
             <div class="list-container">
-                <select onchange="RefreshLists();" v-model="listType" name="listselectiondropdown" id="listselectiondropdown">
+                <select onchange="RefreshLists()" v-model="listType" name="listselectiondropdown" id="listselectiondropdown">
                     <option value="demonlist" selected="selected">Demonlist</option>
                     <option value="challengelist">Challenge List</option>
                 </select>
-                <script>
-                    function RefreshLists(){
-                        console.log("refreshing")
-                    }
-                </script>
                 <table class="list" v-if="list">
                     <tr v-for="([level, err], i) in list">
                         <td class="rank">
@@ -199,3 +194,7 @@ export default {
     score,
   },
 };
+
+function RefreshLists(){
+    console.log("refreshing")
+}
