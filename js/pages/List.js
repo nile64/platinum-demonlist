@@ -1,7 +1,7 @@
 import { store } from "../main.js";
 import { embed } from "../util.js";
 import { score } from "../score.js";
-import { fetchEditors, fetchList, fetchChallengeList } from "../content.js";
+import { fetchEditors, fetchList, fetchChallengeList, ReloadList } from "../content.js";
 
 import Spinner from "../components/Spinner.js";
 import LevelAuthors from "../components/List/LevelAuthors.js";
@@ -13,6 +13,10 @@ const roleIconMap = {
   dev: "code",
   trial: "user-lock",
 };
+
+window.ReloadList = function(){
+    console.log("j")
+}
 
 export default {
   components: { Spinner, LevelAuthors },
@@ -192,8 +196,5 @@ export default {
   methods: {
     embed,
     score,
-    async ReloadList(){
-        console.log("j")
-    }
   },
 };
