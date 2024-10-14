@@ -14,12 +14,6 @@ const roleIconMap = {
   trial: "user-lock",
 };
 
-window.ReloadList = function(){
-    var listselectiondropdown = document.getElementById("listselectiondropdown");
-    var value = listselectiondropdown.value;
-
-    this.listType = value;
-}
 
 export default{
   components: { Spinner, LevelAuthors },
@@ -199,6 +193,11 @@ export default{
   methods: {
     embed,
     score,
-    ReloadList,
+    ReloadList : function(){
+        var listselectiondropdown = document.getElementById("listselectiondropdown");
+        var value = listselectiondropdown.value;
+
+        this.listType = value;
+    },
   },
 };
