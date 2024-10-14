@@ -11,8 +11,8 @@ export default {
           <option value="level">Level</option>
         </select>
         <select v-model="list" id="list" required>
-          <option value="demonlist">demonlist</option>
-          <option value="challengelist">challengelist</option>
+          <option value="demonlist">Demonlist</option>
+          <option value="challengelist">Challenge List</option>
         </select>
 
         <input v-if="type === 'record'" type="text" v-model="levelName" placeholder="Level Name" required />
