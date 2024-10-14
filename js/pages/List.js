@@ -23,7 +23,7 @@ export default{
         </main>
         <main v-else class="page-list">
             <div class="list-container">
-                <select onchange="console.log(value)" name="listselectiondropdown" id="listselectiondropdown">
+                <select onchange="listType = value" name="listselectiondropdown" id="listselectiondropdown">
                     <option value="demonlist" selected="selected">Demonlist</option>
                     <option value="challengelist">Challenge List</option>
                 </select>
