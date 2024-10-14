@@ -24,7 +24,7 @@ export default {
         <main v-else class="page-list">
             <div class="list-container">
                 <select name="listselectiondropdown" id="listselectiondropdown">
-                    <option value="demonlist">Demonlist</option>
+                    <option value="demonlist" selected="selected">Demonlist</option>
                     <option value="challengelist">Challenge List</option>
                 </select>
                 <table class="list" v-if="list">
