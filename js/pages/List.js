@@ -1,8 +1,7 @@
 import { store } from "../main.js";
 import { embed } from "../util.js";
 import { score } from "../score.js";
-import { fetchEditors, fetchList } from "../content.js";
-import { fetchChallengeList } from "../challenge_content.js";
+import { fetchEditors, fetchList, fetchChallengeList } from "../content.js";
 
 import Spinner from "../components/Spinner.js";
 import LevelAuthors from "../components/List/LevelAuthors.js";
@@ -158,11 +157,11 @@ export default {
   async mounted() {
     // Hide loading spinner
     var listDropdown = document.getElementById("listselectiondropdown");
-    if(listDropdown.value == "demonlist"){
-        this.list = await fetchList();
-    }
-    else if(listDropdown.value == "challengelist"){
+    if(listDropdown.value == "challengelist"){
         this.list = await fetchChallengeList();
+    }
+    else{
+        this.list = await fetchList();
     }
     
     this.editors = await fetchEditors();
