@@ -15,7 +15,7 @@ const roleIconMap = {
 };
 
 window.ReloadList = function(){
-    mounted();
+    
 }
 
 export default {
