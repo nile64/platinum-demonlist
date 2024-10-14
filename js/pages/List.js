@@ -189,5 +189,10 @@ export default {
   methods: {
     embed,
     score,
+    async UpdateList(){
+        document.getElementById("listselectiondropdown").onchange = function() {
+            mounted();
+        }
+    }
   },
 };
