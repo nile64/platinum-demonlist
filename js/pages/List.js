@@ -15,10 +15,10 @@ const roleIconMap = {
 };
 
 window.ReloadList = function(){
-    
+    this.mounted();
 }
 
-export default {
+export default{
   components: { Spinner, LevelAuthors },
   template: `
         <main v-if="loading">
@@ -163,9 +163,6 @@ export default {
     },
   },
   async mounted() {
-    this.ListRefresh();
-  },
-  async ListRefresh() {
     // Hide loading spinner
     if(this.listType === "demonlist"){
         this.list = await fetchList();
@@ -199,6 +196,5 @@ export default {
   methods: {
     embed,
     score,
-    ListRefresh,
   },
 };
