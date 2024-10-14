@@ -132,6 +132,7 @@ export default {
         </main>
     `,
   data: () => ({
+    listType: "demonlist", // default to demonlist
     list: [],
     editors: [],
     loading: true,
@@ -156,8 +157,12 @@ export default {
   },
   async mounted() {
     // Hide loading spinner
-    var listDropdown = document.getElementById("listselectiondropdown").textContent;
-    this.list = await fetchList();
+    if(this.listType === "demonlist"){
+        this.list = await fetchList();
+    }
+    else if(this.listType === "challengelist"){
+        this.list = await fetchChallengeList();
+    }
     
     this.editors = await fetchEditors();
 
