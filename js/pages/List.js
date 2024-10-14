@@ -15,7 +15,7 @@ const roleIconMap = {
 };
 
 window.ReloadList = function(){
-    document.getElementsByClassName("page-list") = document.getElementsByClassName("page-list")
+    mounted();
 }
 
 export default {
