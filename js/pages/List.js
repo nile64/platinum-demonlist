@@ -22,7 +22,7 @@ export default {
         </main>
         <main v-else class="page-list">
             <div class="list-container">
-                <select v-model="listType" name="listselectiondropdown" id="listselectiondropdown">
+                <select onchange="RefreshLists();" v-model="listType" name="listselectiondropdown" id="listselectiondropdown">
                     <option value="demonlist" selected="selected">Demonlist</option>
                     <option value="challengelist">Challenge List</option>
                 </select>
@@ -192,16 +192,9 @@ export default {
   methods: {
     embed,
     score,
-    async ReloadList() {
-        document.getElementById("listselectiondropdown").onchange = function() {
-            if(this.listType === "demonlist"){
-                this.list = fetchList();
-            }
-            else if(this.listType === "challengelist"){
-                this.list = fetchChallengeList();
-            }
-            console.log("list changed, refreshed")
-        }
-    },
   },
 };
+
+function RefreshLists(){
+    console.log("refreshing")
+}
