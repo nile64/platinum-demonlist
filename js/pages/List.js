@@ -157,12 +157,7 @@ export default {
   async mounted() {
     // Hide loading spinner
     var listDropdown = document.getElementById("listselectiondropdown");
-    if(listDropdown.value == "challengelist"){
-        this.list = await fetchChallengeList();
-    }
-    else{
-        this.list = await fetchList();
-    }
+    this.list = await fetchList();
     
     this.editors = await fetchEditors();
 
