@@ -192,5 +192,10 @@ export default {
   methods: {
     embed,
     score,
+    async ReloadList() {
+        document.getElementById("listselectiondropdown").onchange = function() {
+            document.getElementsByClassName("page-list") = document.getElementsByClassName("page-list")
+        }
+    },
   },
 };
