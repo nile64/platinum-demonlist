@@ -191,3 +191,35 @@ export default {
     score,
   },
 };
+
+document.getElementById("listselectiondropdown").onchange = async function() {
+    // Hide loading spinner
+    if(this.listType === "demonlist"){
+        this.list = await fetchList();
+    }
+    else if(this.listType === "challengelist"){
+        this.list = await fetchChallengeList();
+    }
+    
+    this.editors = await fetchEditors();
+
+    // Error handling
+    if (!this.list) {
+      this.errors = [
+        "Failed to load list. Retry in a few minutes or notify list staff.",
+      ];
+    } else {
+      this.errors.push(
+        ...this.list
+          .filter(([_, err]) => err)
+          .map(([_, err]) => {
+            return `Failed to load level. (${err}.json)`;
+          }),
+      );
+      if (!this.editors) {
+        this.errors.push("Failed to load list editors.");
+      }
+    }
+
+    this.loading = false;
+}

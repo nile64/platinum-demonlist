@@ -37,13 +37,13 @@ export async function fetchList() {
 }
 
 export async function fetchChallengeList() {
-  const listResult = await fetch(`https://platinum.141412.xyz/getList.php`);
+  const listResult = await fetch(`https://platinum.141412.xyz/getChallengeList.php`);
   try {
     const list = await listResult.json();
     return await Promise.all(
       list.map(async (path, rank) => {
         const levelResult = await fetch(
-          `https://platinum.141412.xyz/getDemonlistLevel.php?name=${path}`,
+          `https://platinum.141412.xyz/getChallengeListLevel.php?name=${path}`,
         );
         try {
           const level = await levelResult.json();
