@@ -10,6 +10,10 @@ export default {
           <option value="record">Record</option>
           <option value="level">Level</option>
         </select>
+        <select v-model="list" id="list" required>
+          <option value="demonlist">demonlist</option>
+          <option value="challengelist">challengelist</option>
+        </select>
 
         <input v-if="type === 'record'" type="text" v-model="levelName" placeholder="Level Name" required />
         <input v-if="type === 'record'" type="text" v-model="playerName" placeholder="Player Name" required />
@@ -28,6 +32,7 @@ export default {
   `,
   data: () => ({
     type: "record", // Default to 'record'
+    list: "demonlist", // Default to 'demonlist'
     playerName: "",
     levelName: "",
     id: null, // Only used for level submissions
@@ -71,6 +76,7 @@ export default {
           },
           body: JSON.stringify({
             type: this.type,
+            list: this.list,
             playerName: this.playerName,
             levelName: this.levelName,
             id: this.id,
@@ -88,6 +94,7 @@ export default {
       const result = await response.json();
 
       if (response.ok) {
+        this.list = "";
         this.playerName = "";
         (this.levelName = ""), (this.id = null);
         this.name = "";
