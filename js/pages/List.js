@@ -26,6 +26,11 @@ export default {
                     <option value="demonlist" selected="selected">Demonlist</option>
                     <option value="challengelist">Challenge List</option>
                 </select>
+                <script>
+                    function RefreshLists(){
+                        console.log("refreshing")
+                    }
+                </script>
                 <table class="list" v-if="list">
                     <tr v-for="([level, err], i) in list">
                         <td class="rank">
@@ -194,7 +199,3 @@ export default {
     score,
   },
 };
-
-function RefreshLists(){
-    console.log("refreshing")
-}
