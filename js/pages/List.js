@@ -194,7 +194,12 @@ export default {
     score,
     async ReloadList() {
         document.getElementById("listselectiondropdown").onchange = function() {
-            document.getElementsByClassName("page-list") = document.getElementsByClassName("page-list")
+            if(this.listType === "demonlist"){
+                this.list = fetchList();
+            }
+            else if(this.listType === "challengelist"){
+                this.list = fetchChallengeList();
+            }
             console.log("list changed, refreshed")
         }
     },
