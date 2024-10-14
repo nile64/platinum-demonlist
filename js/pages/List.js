@@ -1,7 +1,7 @@
 import { store } from "../main.js";
 import { embed } from "../util.js";
 import { score } from "../score.js";
-import { fetchEditors, fetchList, fetchChallengeList } from "../content.js";
+import { fetchEditors, fetchList, fetchChallengeList, RefreshLists } from "../content.js";
 
 import Spinner from "../components/Spinner.js";
 import LevelAuthors from "../components/List/LevelAuthors.js";
@@ -22,7 +22,7 @@ export default {
         </main>
         <main v-else class="page-list">
             <div class="list-container">
-                <select onchange="RefreshLists()" v-model="listType" name="listselectiondropdown" id="listselectiondropdown">
+                <select onchange="RefreshLists();" v-model="listType" name="listselectiondropdown" id="listselectiondropdown">
                     <option value="demonlist" selected="selected">Demonlist</option>
                     <option value="challengelist">Challenge List</option>
                 </select>
@@ -194,7 +194,3 @@ export default {
     score,
   },
 };
-
-function RefreshLists(){
-    console.log("refreshing")
-}
