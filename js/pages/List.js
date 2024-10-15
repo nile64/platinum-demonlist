@@ -103,7 +103,7 @@ export default{
                             </li>
                         </ol>
                     </template>
-                    <h3>Submission Requirements</h3>
+                    <h2>Basic Rules</h2>
                     <p>
                         Achieved the record without using hacks (however, FPS bypass is allowed, up to 360fps)
                     </p>
@@ -111,10 +111,13 @@ export default{
                         Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
                     </p>
                     <p>
+                        Achieved the record in version 1.9 - completions on any other version are invalidated.
+                    </p>
+                    <p>
                         Have either source audio or clicks/taps in the video. Edited audio only does not count
                     </p>
                     <p>
-                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this
+                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt.
                     </p>
                     <p>
                         The recording must also show the player hit the endwall, or the completion will be invalidated.
@@ -125,8 +128,17 @@ export default{
                     <p>
                         Do not use easy modes, only a record of the unmodified level qualifies
                     </p>
+                    <h2>List Specific Rules</h2>
+                    <h3>Demonlist</h3>
                     <p>
-                        Once a level falls onto the Legacy List, we accept records for it for 24 hours after it falls off, then afterwards we never accept records for said level
+                        Level must be rated on Platinum GDPS.
+                    </p>
+                    <h3>Challenge List</h3>
+                    <p>
+                        Level must be of decent quality.
+                    </p>
+                    <p>
+                        Level must be 30 seconds or shorter.
                     </p>
                     <p>
                         thx for playing platinum gdps, ur a sigma fr
